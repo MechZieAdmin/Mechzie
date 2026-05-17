@@ -1,0 +1,118 @@
+Role & Project Overview
+You are an expert Frontend Engineer and UI/UX Designer specializing in ultra-premium, modern SaaS and startup landing pages (Linear, Stripe, Apple style). Your task is to build a single-page React landing page for MechZie—a mobile mechanical service platform for bike repair and roadside assistance.
+
+The site must feel incredibly smooth, trustworthy, and technologically advanced, featuring soft glassmorphism, fluid micro-interactions, and flawless responsive layouts.
+
+Technical Stack & Constraints
+Framework: React.js (Vite preferred, single-page architecture).
+
+Styling: Tailwind CSS (for modern utility-first layouts, gradients, and custom shadows).
+
+Animations: Framer Motion (or GSAP) for scroll-reveals, floating elements, parallax, and staggered timeline animations.
+
+Typography: Google Fonts: Inter or Poppins (Clean, geometric, premium).
+
+Icons: Lucide React (or React Icons).
+
+Brand Architecture & Design Tokens
+Strictly adhere to this color palette and design system:
+
+JavaScript
+const theme = {
+  colors: {
+    primary: { DEFAULT: '#E8751A', dark: '#C75F10', light: '#F09840' },
+    text: { primary: '#1A1A2E', secondary: '#6B7280', hint: '#9CA3AF' },
+    neutral: { white: '#FCFCFC', dark: '#121212' },
+    bg: { scaffold: '#F5F5F8', surface: '#FCFCFC', variant: '#F0F1F5' },
+    border: { divider: '#E5E7EB', card: '#E8E8EC' }
+  },
+  effects: {
+    glass: "backdrop-blur-md bg-white/70 border border-white/20 shadow-[0_8px_32px_0_rgba(232,117,26,0.05)]",
+    glow: "shadow-[0_0_30px_-5px_rgba(232,117,26,0.3)]"
+  }
+}
+Core Global Interactions (Implement First)
+Startup Loading Animation: A premium preloader featuring an abstract, geometric wheel/gear spinning smoothly, morphing into the orange MechZie wordmark, which then fades out to reveal the hero section.
+
+Mouse-Follow Glow Effect: A subtle, low-opacity orange gradient radial circle (#E8751A at 0.05 opacity) that smoothly follows the user's cursor behind the content layers.
+
+Sticky Glassmorphic Navbar: Blurs elegantly on scroll (backdrop-blur-md bg-white/80). Features a minimalist layout: Logo -> Links (Services, How it Works, Why Us, App) -> "Download App" CTA button.
+
+Detailed Section-by-Section Blueprint
+1. Hero Section
+Typography:
+
+Main Headline (H1): “Your Bike Breaks. MechZie Arrives.” (Font weight 800, tracking-tight, with "MechZie Arrives" styled in a gradient from Primary to Primary Dark).
+
+Subheading: “Fast doorstep bike repair and emergency mechanic support anytime, anywhere.”
+
+CTAs: Two modern button variants side-by-side.
+
+Primary: "Book Mechanic" (Solid #E8751A, subtle pulse glow on hover, lifts up slightly).
+
+Secondary: "Explore Services" (Outline style, shifts background color smoothly).
+
+Visual Assets & Layout (Split-Screen / Layered Desktop):
+
+Background: Floating animated vector tools (wrench, gear, piston) rotating gently via Framer Motion infinite loops. Soft, blurry orange background blobs pulsing out of sync.
+
+Hero Illustration: An ultra-premium vector graphic in an elegant anime/tech-noir style. It should depict a stylish, friendly, energetic mechanic pushing a performance sportbike tire next to a sleek motorcycle on a stylized roadside. Use clean vector paths that complement the clean UI.
+
+Separator: An SVG wave transition that blends cleanly into the next section.
+
+2. Services Section
+Grid: 3x2 grid layout (Desktop) collapsing smoothly to a 1-column stack (Mobile).
+
+Cards (Emergency Repair, Flat Tire Support, Doorstep Service, Engine Diagnostics, Battery Support, Fuel Assistance):
+
+Style: Minimalist white backgrounds, Card Border stroke, rounded edges (2xl).
+
+Hover State: Upon hover, the card lifts smoothly (y: -8), shifts its border color to Primary Light, and casts a soft orange shadow.
+
+Animation: Use Framer Motion's staggerChildren to reveal the service cards one by one as they scroll into view.
+
+3. How It Works Section
+Layout: A vertical/horizontal connecting timeline mapping out 3 steps: 1. Request Help -> 2. Mechanic Arrives -> 3. Ride Again.
+
+Interactions: As the user scrolls down, an animated gradient line (tracing from grey to #E8751A) grows to connect each step.
+
+Visuals: Each step features a sleek glassmorphic circle housing a dedicated dynamic icon that activates with a bounce animation when its respective section enters the viewport.
+
+4. Why MechZie (Trust Indicators)
+Grid Layout: 4-column feature block displaying key metrics: Fast Response, Verified Mechanics, Live Tracking, 24/7 Support.
+
+Features:
+
+Glowing, premium gradient-backed icons.
+
+Animated Counters: Numbers like 15 Min Avg Arrival or 5,000+ Verified Mechanics that count up smoothly from 0 via a custom hook or GSAP ticker when scrolled into view.
+
+5. App Preview Section
+Layout: Centered or split asymmetrical layout showcasing a high-fidelity mobile app mockup frame.
+
+Mockup UI: Designed with soft neumorphism and glassmorphism. It should display a live map tracking a mechanic, a stylized dashboard showing bike health metrics, and a clean booking interface.
+
+Effects: A soft radial gradient glow behind the phone mockup that shifts in hue or position slightly on mouse movement (parallax effect).
+
+6. Testimonials Section
+UI: An infinite loop slider/carousel or an elegantly arranged masonry grid mixing dark (Neutral 900) and light (Surface) review cards for a striking visual contrast.
+
+Content: High-quality, production-grade dummy user testimonials with user avatars, star ratings, and verified badges.
+
+7. Final CTA & Footer
+CTA Box: A full-width, deep-tinted premium container.
+
+Headline: “Road Problems Don’t Wait. Neither Do We.”
+
+Button: An oversized, glowing primary CTA button with a shimmering light-sweep hover effect.
+
+Footer: Sleek, minimal multi-column grid containing social media icon sets, copyright notices, and organized, low-contrast footer navigation links (Text Hint).
+
+Code Quality & Engineering Best Practices
+Component Structure: Clean, modularized architecture (/components/Hero.jsx, /components/Navbar.jsx, etc.).
+
+Maintainability: Add clear, descriptive block comments above every major section and animation configuration block.
+
+Performance: Optimize animations to use GPU-accelerated CSS properties (transform, opacity). Ensure images/SVGs are light and responsive.
+
+Clean Code: Avoid cluttered UI structures; maximize whitespace, and balance padding (py-24 or py-32 for sections) to ensure a premium, breathable SaaS aesthetic.

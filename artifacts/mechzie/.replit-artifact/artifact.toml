@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "MechZie Landing Page"
+version = "1.0.0"
+id = "artifacts/mechzie"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21296
+
+[services.development]
+run = "pnpm --filter @workspace/mechzie run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mechzie", "run", "build" ]
+publicDir = "artifacts/mechzie/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21296"
+BASE_PATH = "/"
