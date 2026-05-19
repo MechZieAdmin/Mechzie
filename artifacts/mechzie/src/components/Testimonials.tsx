@@ -3,52 +3,44 @@ import { Star, ShieldCheck } from "lucide-react";
 
 const reviews = [
   {
-    name: "Alex M.",
-    location: "Los Angeles",
-    initials: "AM",
+    name: "Siva",
+    location: "Hyderabad",
+    initials: "SI",
     color: "bg-blue-500",
     text: "Engine died on the freeway at 11 PM. MechZie had a guy there in 20 minutes. Incredible service, saved my night.",
     dark: true
   },
   {
-    name: "Sarah T.",
-    location: "San Francisco",
-    initials: "ST",
+    name: "Trishnak",
+    location: "Bangalore",
+    initials: "TR",
     color: "bg-purple-500",
     text: "Super smooth app. Knew exactly when the mechanic was arriving. Fixed my flat tire and I was back riding in no time.",
     dark: false
   },
   {
-    name: "David K.",
-    location: "Austin",
-    initials: "DK",
+    name: "Raj Tarun",
+    location: "Chennai",
+    initials: "RT",
     color: "bg-green-500",
     text: "The mechanics are legit. Diagnosed a weird electrical issue on the spot that my regular shop missed. 10/10.",
     dark: true
   },
   {
-    name: "Marcus J.",
-    location: "Miami",
-    initials: "MJ",
+    name: "Sudharshan",
+    location: "Pune",
+    initials: "SD",
     color: "bg-red-500",
     text: "I don't ride without this app anymore. It's like having a pit crew on speed dial. Prices are transparent too.",
     dark: false
   },
   {
-    name: "Elena R.",
-    location: "Chicago",
-    initials: "ER",
+    name: "Jyothish",
+    location: "Kochi",
+    initials: "JY",
     color: "bg-teal-500",
     text: "Battery died before a big trip. Booked through MechZie and they swapped it out in my driveway within the hour.",
     dark: true
-  },
-  {
-    name: "James L.",
-    location: "Seattle",
-    initials: "JL",
-    color: "bg-indigo-500",
-    text: "Best roadside app period. The mechanic was professional, fast, and really knew his way around a Ducati.",
-    dark: false
   }
 ];
 

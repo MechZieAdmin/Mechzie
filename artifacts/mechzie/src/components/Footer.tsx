@@ -41,7 +41,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-6">Contact</h3>
             <ul className="space-y-4 text-gray-400">
-              <li>support@mechzie.com</li>
+              <li>admin@mechzie.in</li>
               <li>1-800-MECHZIE</li>
               <li>123 Fast Lane, Tech District<br />San Francisco, CA 94107</li>
             </ul>

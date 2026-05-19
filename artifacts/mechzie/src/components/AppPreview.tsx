@@ -98,10 +98,10 @@ export function AppPreview() {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-primary relative overflow-hidden">
                       <div className="absolute inset-0 bg-primary/20" />
-                      <span className="absolute inset-0 flex items-center justify-center font-bold text-xs">JD</span>
+                      <span className="absolute inset-0 flex items-center justify-center font-bold text-xs">AY</span>
                     </div>
                     <div>
-                      <h5 className="font-bold text-sm">John Doe</h5>
+                      <h5 className="font-bold text-sm">Anusha Yadav</h5>
                       <div className="flex text-xs text-yellow-500">
                         ★★★★★
                       </div>
