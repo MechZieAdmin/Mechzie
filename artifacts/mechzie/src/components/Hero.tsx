@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ChevronDown, Wrench, Settings, Zap } from "lucide-react";
 
 export function Hero() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -13,7 +13,7 @@ export function Hero() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 30, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 10 } },
   };
