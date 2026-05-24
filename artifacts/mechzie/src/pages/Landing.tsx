@@ -4,6 +4,7 @@ import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
 import { WhyMechZie } from "@/components/WhyMechZie";
 import { AppPreview } from "@/components/AppPreview";
+import { SOSShowcase } from "@/components/SOSShowcase";
 import { Testimonials } from "@/components/Testimonials";
 import { Footer } from "@/components/Footer";
 import { LoadingScreen } from "@/components/LoadingScreen";
@@ -22,6 +23,7 @@ export default function Landing() {
         <HowItWorks />
         <WhyMechZie />
         <AppPreview />
+        <SOSShowcase />
         <Testimonials />
         
         {/* Final CTA Section */}
