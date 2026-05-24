@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "outputDirectory": "artifacts/mechzie/dist/public",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
