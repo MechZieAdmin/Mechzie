@@ -1,4 +1,5 @@
 import { Twitter, Instagram, Facebook, Github } from "lucide-react";
+import { Link } from "wouter";
 
 export function Footer() {
   return (
@@ -31,10 +32,10 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-6">Quick Links</h3>
             <ul className="space-y-4">
-              <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-              <li><a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="#why-us" className="text-gray-400 hover:text-white transition-colors">Why Us</a></li>
-              <li><a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
+              <li><a href="/#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
+              <li><a href="/#how-it-works" className="text-gray-400 hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="/#why-us" className="text-gray-400 hover:text-white transition-colors">Why Us</a></li>
+              <li><a href="/#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a></li>
             </ul>
           </div>
 
@@ -51,8 +52,8 @@ export function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500">
           <p>&copy; {new Date().getFullYear()} MechZie. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
           </div>
         </div>
       </div>
