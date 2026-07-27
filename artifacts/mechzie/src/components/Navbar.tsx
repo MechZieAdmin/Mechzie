@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
+import { Logo } from "@/components/Logo";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,8 +26,9 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/">
-          <div className="text-2xl font-extrabold tracking-tight cursor-pointer">
-            Mech<span className="text-primary">Zie</span>
+          <div className="flex items-center gap-2.5 text-2xl font-extrabold tracking-tight cursor-pointer">
+            <Logo size={32} className="text-primary" />
+            <span>Mech<span className="text-primary">Zie</span></span>
           </div>
         </Link>
 

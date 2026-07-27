@@ -1,5 +1,6 @@
 import { Twitter, Instagram, Facebook, Github } from "lucide-react";
 import { Link } from "wouter";
+import { Logo } from "@/components/Logo";
 
 export function Footer() {
   return (
@@ -7,8 +8,9 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
-            <div className="text-3xl font-extrabold tracking-tight mb-4">
-              Mech<span className="text-primary">Zie</span>
+            <div className="flex items-center gap-2.5 text-3xl font-extrabold tracking-tight mb-4">
+              <Logo size={36} className="text-primary" />
+              <span>Mech<span className="text-primary">Zie</span></span>
             </div>
             <p className="text-gray-400 mb-6 max-w-sm">
               Fast doorstep bike repair and emergency mechanic support anytime, anywhere. Your reliable pit crew.

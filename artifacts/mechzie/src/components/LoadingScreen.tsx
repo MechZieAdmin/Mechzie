@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Settings } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 export function LoadingScreen() {
   const [visible, setVisible] = useState(true);
@@ -28,11 +28,12 @@ export function LoadingScreen() {
     >
       <div className="flex flex-col items-center">
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="mb-6 text-primary"
         >
-          <Settings size={64} strokeWidth={1.5} />
+          <Logo size={100} animate={true} />
         </motion.div>
         <motion.div
           initial={{ y: 20, opacity: 0 }}
