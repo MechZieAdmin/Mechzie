@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface LogoProps {
   className?: string;
@@ -8,7 +8,7 @@ interface LogoProps {
 
 export function Logo({ className = "", size = 40, animate = false }: LogoProps) {
   // Speed lines subtle sliding/charging animation
-  const line1Variants = {
+  const line1Variants: Variants = {
     initial: { x: 0 },
     animate: {
       x: [0, -6, 0],
@@ -20,7 +20,7 @@ export function Logo({ className = "", size = 40, animate = false }: LogoProps) 
     },
   };
 
-  const line2Variants = {
+  const line2Variants: Variants = {
     initial: { x: 0 },
     animate: {
       x: [0, -10, 0],
@@ -33,7 +33,7 @@ export function Logo({ className = "", size = 40, animate = false }: LogoProps) 
     },
   };
 
-  const line3Variants = {
+  const line3Variants: Variants = {
     initial: { x: 0 },
     animate: {
       x: [0, -8, 0],
@@ -46,7 +46,7 @@ export function Logo({ className = "", size = 40, animate = false }: LogoProps) 
     },
   };
 
-  const dotVariants = {
+  const dotVariants: Variants = {
     initial: { scale: 1, opacity: 1 },
     animate: {
       scale: [1, 0.8, 1],
@@ -60,7 +60,7 @@ export function Logo({ className = "", size = 40, animate = false }: LogoProps) 
     },
   };
 
-  const line4Variants = {
+  const line4Variants: Variants = {
     initial: { x: 0 },
     animate: {
       x: [0, -5, 0],
@@ -74,7 +74,7 @@ export function Logo({ className = "", size = 40, animate = false }: LogoProps) 
   };
 
   // Subtle rotation or pulse for the wrench head
-  const wrenchVariants = {
+  const wrenchVariants: Variants = {
     initial: { rotate: 0 },
     animate: {
       rotate: 360,
