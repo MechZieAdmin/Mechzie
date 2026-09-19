@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Smartphone, Download, CheckCircle2 } from "lucide-react";
+import { LINKS } from "@/lib/links";
 
 export function AppPreview() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -112,9 +113,15 @@ export function AppPreview() {
                   </div>
                 </div>
 
-                <button className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-sm hover:bg-primary/90 transition-colors shadow-md">
+                <a
+                  href={LINKS.playStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get the MechZie app to call this mechanic"
+                  className="block w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-sm text-center transition-colors hover:bg-primary/90 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
                   Call Mechanic
-                </button>
+                </a>
               </div>
 
             </div>
@@ -122,20 +129,30 @@ export function AppPreview() {
         </div>
 
         <div className="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
-          <button className="flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-xl hover:bg-foreground/90 transition-transform hover:-translate-y-1">
+          <a
+            href={LINKS.playStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-xl hover:bg-foreground/90 transition-transform hover:-translate-y-1"
+          >
             <Smartphone className="w-6 h-6" />
-            <div className="text-left">
-              <div className="text-[10px] uppercase tracking-wider">Download on the</div>
-              <div className="font-bold text-sm leading-tight">App Store</div>
-            </div>
-          </button>
-          <button className="flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-xl hover:bg-foreground/90 transition-transform hover:-translate-y-1">
-            <Download className="w-6 h-6" />
             <div className="text-left">
               <div className="text-[10px] uppercase tracking-wider">Get it on</div>
               <div className="font-bold text-sm leading-tight">Google Play</div>
             </div>
-          </button>
+          </a>
+          <a
+            href={LINKS.playStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-xl hover:bg-foreground/90 transition-transform hover:-translate-y-1"
+          >
+            <Download className="w-6 h-6" />
+            <div className="text-left">
+              <div className="text-[10px] uppercase tracking-wider">Direct download</div>
+              <div className="font-bold text-sm leading-tight">Android APK</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>

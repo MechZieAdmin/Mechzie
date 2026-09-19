@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { MouseGlow } from "@/components/MouseGlow";
 import { FileText, ShieldAlert, CreditCard, Scale, HelpCircle, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 
@@ -12,7 +11,6 @@ export default function TermsAndConditions() {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative selection:bg-primary/20 selection:text-primary overflow-x-hidden">
-      <MouseGlow />
       <Navbar />
 
       <main className="container mx-auto px-6 pt-32 pb-24 relative z-10 max-w-4xl">
@@ -38,7 +36,7 @@ export default function TermsAndConditions() {
         </div>
 
         {/* Content Section */}
-        <div className="bg-card/75 dark:bg-[#121212]/40 backdrop-blur-md border border-border dark:border-white/5 rounded-2xl p-8 md:p-12 space-y-12 shadow-xl">
+        <div className="bg-card/75 backdrop-blur-md border border-border rounded-2xl p-8 md:p-12 space-y-12 shadow-xl">
           <section className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="p-2.5 bg-primary/10 text-primary rounded-xl">

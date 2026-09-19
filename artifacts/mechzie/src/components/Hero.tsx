@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
-import { ChevronDown, Wrench, Settings, Zap } from "lucide-react";
+import { ChevronDown } from "lucide-react";
+import { LINKS, scrollToAnchor } from "@/lib/links";
 
 export function Hero() {
   const containerVariants: Variants = {
@@ -20,41 +21,9 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-background">
-      {/* Background elements */}
+      {/* One deliberate warm glow — the page's single ambient effect. */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{ rotate: 360, x: [0, 20, 0], y: [0, 30, 0] }}
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-          className="absolute top-1/4 -left-12 opacity-10 text-primary"
-        >
-          <Settings size={120} />
-        </motion.div>
-        <motion.div
-          animate={{ rotate: -360, x: [0, -30, 0], y: [0, 20, 0] }}
-          transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-          className="absolute bottom-1/4 right-10 opacity-10 text-primary"
-        >
-          <Wrench size={100} />
-        </motion.div>
-        <motion.div
-          animate={{ y: [0, -40, 0] }}
-          transition={{ repeat: Infinity, duration: 15, ease: "easeInOut" }}
-          className="absolute top-1/3 right-1/4 opacity-10 text-primary"
-        >
-          <Zap size={80} />
-        </motion.div>
-
-        {/* Blurry blobs */}
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-          className="absolute -top-32 -right-32 w-96 h-96 bg-primary rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-0 -left-20 w-80 h-80 bg-orange-400 rounded-full blur-[100px]"
-        />
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -70,7 +39,7 @@ export function Hero() {
               className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6"
             >
               Your Bike Breaks. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
+              <span className="text-primary">
                 MechZie Arrives.
               </span>
             </motion.h1>
@@ -84,15 +53,19 @@ export function Hero() {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <button
+              <a
                 data-testid="hero-cta-book"
-                className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg hover:bg-primary/90 transition-all hover:-translate-y-1 shadow-[0_4px_12px_-2px_rgba(232,117,26,0.4)] hover:shadow-[0_8px_24px_-4px_rgba(232,117,26,0.6)]"
+                href={LINKS.playStore}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold text-lg transition-all hover:bg-primary/90 hover:-translate-y-1 shadow-[0_4px_12px_-2px_rgba(232,117,26,0.4)] hover:shadow-[0_8px_24px_-4px_rgba(232,117,26,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Book Mechanic
-              </button>
+              </a>
               <button
                 data-testid="hero-cta-explore"
-                className="w-full sm:w-auto px-8 py-4 border-2 border-primary/20 text-foreground rounded-full font-bold text-lg hover:border-primary hover:bg-primary/5 transition-all"
+                onClick={() => scrollToAnchor(LINKS.anchors.services)}
+                className="w-full sm:w-auto px-8 py-4 border-2 border-primary/20 text-foreground rounded-full font-bold text-lg transition-all hover:border-primary hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Explore Services
               </button>
@@ -143,22 +116,6 @@ export function Hero() {
       >
         <ChevronDown size={32} />
       </motion.div>
-
-      {/* Bottom SVG Wave */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="relative block w-full h-[60px] md:h-[100px]"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,123.15,192.17,109.5Z"
-            className="fill-background/50 dark:fill-[#121212]"
-          ></path>
-        </svg>
-      </div>
     </section>
   );
 }

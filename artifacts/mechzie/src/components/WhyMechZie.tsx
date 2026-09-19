@@ -1,84 +1,43 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Clock, ShieldCheck, Navigation, PhoneCall } from "lucide-react";
+import { ShieldCheck, Navigation, PhoneCall, LifeBuoy } from "lucide-react";
 
-function AnimatedCounter({ end, duration = 2, suffix = "" }: { end: number, duration?: number, suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    if (!inView) return;
-
-    let startTime: number;
-    let animationFrame: number;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = timestamp - startTime;
-      const percentage = Math.min(progress / (duration * 1000), 1);
-      
-      // Easing function
-      const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
-      
-      setCount(Math.floor(end * easeOutQuart));
-
-      if (percentage < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationFrame);
-  }, [end, duration, inView]);
-
-  return (
-    <motion.span
-      onViewportEnter={() => setInView(true)}
-      viewport={{ once: true }}
-    >
-      {count}{suffix}
-    </motion.span>
-  );
-}
-
-const stats = [
-  {
-    icon: <Clock className="w-6 h-6 text-white" />,
-    value: 15,
-    suffix: " Min",
-    title: "Avg. Response Time",
-    desc: "Fastest on-road support"
-  },
+// Trust signals grounded in the real MechZie API (see .impeccable/sources/openapi.yaml) —
+// no fabricated numbers. Every claim maps to a shipped capability.
+const pillars = [
   {
     icon: <ShieldCheck className="w-6 h-6 text-white" />,
-    value: 5000,
-    suffix: "+",
     title: "Verified Mechanics",
-    desc: "Vetted & certified experts"
+    desc: "Every mechanic is document-verified by our team before they can go online.",
   },
   {
     icon: <Navigation className="w-6 h-6 text-white" />,
-    value: 100,
-    suffix: "%",
     title: "Live Tracking",
-    desc: "See exactly when help arrives"
+    desc: "Watch your mechanic's approach in real time, from accept to arrival.",
   },
   {
     icon: <PhoneCall className="w-6 h-6 text-white" />,
-    value: 24,
-    suffix: "/7",
-    title: "Support",
-    desc: "Always here when you need us"
-  }
+    title: "In-App Call & Chat",
+    desc: "Talk to your mechanic the moment they accept — no number sharing needed.",
+  },
+  {
+    icon: <LifeBuoy className="w-6 h-6 text-white" />,
+    title: "Help in Minutes",
+    desc: "Your job is offered to nearby verified mechanics and the first to accept is dispatched.",
+  },
 ];
 
 export function WhyMechZie() {
   return (
     <section id="why-us" className="py-24 bg-background">
       <div className="container mx-auto px-6">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-4xl font-bold tracking-tight mb-4">Why MechZie</h2>
+          <p className="text-muted-foreground text-lg">
+            A dispatched, tracked, paid-in-app rescue — not a directory of phone numbers.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
+          {pillars.map((pillar, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -88,13 +47,10 @@ export function WhyMechZie() {
               className="flex flex-col items-center text-center group"
             >
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-6 shadow-lg transform transition-transform group-hover:scale-110">
-                {stat.icon}
+                {pillar.icon}
               </div>
-              <div className="text-4xl font-extrabold tracking-tight mb-2 text-foreground">
-                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{stat.title}</h3>
-              <p className="text-muted-foreground text-sm">{stat.desc}</p>
+              <h3 className="font-semibold text-lg mb-2">{pillar.title}</h3>
+              <p className="text-muted-foreground text-sm">{pillar.desc}</p>
             </motion.div>
           ))}
         </div>

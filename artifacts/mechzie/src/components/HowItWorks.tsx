@@ -34,7 +34,7 @@ export function HowItWorks() {
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="how-it-works" className="py-32 bg-[#121212] text-white relative">
+    <section id="how-it-works" className="dark py-32 bg-background text-foreground relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
           <motion.h2
@@ -83,7 +83,7 @@ export function HowItWorks() {
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", delay: index * 0.2 + 0.2 }}
-                    className="w-16 h-16 rounded-full bg-[#1A1A2E] border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_20px_rgba(232,117,26,0.3)] z-10 relative"
+                    className="w-16 h-16 rounded-full bg-card border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_20px_rgba(232,117,26,0.3)] z-10 relative"
                   >
                     {step.icon}
                   </motion.div>

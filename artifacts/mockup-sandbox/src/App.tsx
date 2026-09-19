@@ -82,7 +82,16 @@ function PreviewRenderer({
     );
   }
 
-  if (!Component) return null;
+  if (!Component) {
+    return (
+      <div className="min-h-[60vh] w-full animate-pulse rounded-lg bg-muted/40 p-8">
+        <div className="mb-4 h-6 w-1/3 rounded bg-muted" />
+        <div className="mb-2 h-4 w-2/3 rounded bg-muted" />
+        <div className="h-4 w-1/2 rounded bg-muted" />
+        <span className="sr-only">Loading preview…</span>
+      </div>
+    );
+  }
 
   return <Component />;
 }
@@ -97,21 +106,56 @@ function getPreviewExamplePath(): string {
 }
 
 function Gallery() {
+  // Index the discovered mockups so the Gallery is a usable entry point.
+  const names = Object.keys(discoveredModules)
+    .map((key) => key.replace(/^\.\/components\/mockups\//, "").replace(/\.tsx$/, ""))
+    .sort();
+  const basePath = getBasePath();
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-      <div className="text-center max-w-md">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-3">
-          Component Preview Server
-        </h1>
-        <p className="text-gray-500 mb-4">
-          This server renders individual components for the workspace canvas.
-        </p>
-        <p className="text-sm text-gray-400">
-          Access component previews at{" "}
-          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">
-            {getPreviewExamplePath()}
-          </code>
-        </p>
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-8">
+      <div className="w-full max-w-2xl">
+        <div className="mb-8 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight mb-2">
+            MechZie Component Previews
+          </h1>
+          <p className="text-muted-foreground">
+            Live mockups rendered against the real MechZie theme.
+          </p>
+        </div>
+
+        {names.length === 0 ? (
+          <div className="rounded-xl border border-dashed border-border bg-card p-10 text-center">
+            <p className="font-medium mb-2">No components discovered yet</p>
+            <p className="text-sm text-muted-foreground mb-4">
+              Drop a <code className="rounded bg-muted px-1.5 py-0.5 text-foreground/80">.tsx</code> file
+              into{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-foreground/80">
+                src/components/mockups/
+              </code>{" "}
+              and the preview plugin will register it automatically.
+            </p>
+            <p className="text-xs text-muted-foreground">
+              Then open{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 text-foreground/80">
+                {getPreviewExamplePath()}
+              </code>
+            </p>
+          </div>
+        ) : (
+          <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {names.map((name) => (
+              <li key={name}>
+                <a
+                  href={`${basePath}/preview/${name}`}
+                  className="block rounded-lg border border-border bg-card px-4 py-3 font-medium text-card-foreground transition-colors hover:border-primary/40 hover:bg-accent hover:text-accent-foreground"
+                >
+                  {name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
