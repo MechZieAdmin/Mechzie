@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "outputDirectory": "artifacts/mechzie/dist/public",
   "routes": [
     { "handle": "filesystem" },
