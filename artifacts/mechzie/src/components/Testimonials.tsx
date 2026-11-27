@@ -1,108 +1,91 @@
+import {
+  PiShieldCheck,
+  PiLightning,
+  PiMapPin,
+  PiPhoneCall,
+  PiCreditCard,
+  PiLifebuoy,
+} from "react-icons/pi";
+import { SpotlightCard, TiltCard, FadeSlideIn, StaggeredGrid, staggerItem } from "@/components/ui/card-animations";
 import { motion } from "framer-motion";
-import { Star, ShieldCheck } from "lucide-react";
 
-const reviews = [
+const pillars = [
   {
-    name: "Siva",
-    location: "Hyderabad",
-    initials: "SI",
-    color: "bg-blue-500",
-    text: "Engine died on the freeway at 11 PM. MechZie had a guy there in 20 minutes. Incredible service, saved my night.",
-    dark: true
+    Icon: PiShieldCheck,
+    title: "Verified mechanics only",
+    desc: "Every mechanic's documents are reviewed by our team before they can go online and take a single job.",
   },
   {
-    name: "Trishnak",
-    location: "Bangalore",
-    initials: "TR",
-    color: "bg-purple-500",
-    text: "Super smooth app. Knew exactly when the mechanic was arriving. Fixed my flat tire and I was back riding in no time.",
-    dark: false
+    Icon: PiLightning,
+    title: "First to accept is dispatched",
+    desc: "Your request goes to nearby available mechanics at once — the first to accept is assigned instantly. No calling one by one.",
   },
   {
-    name: "Raj Tarun",
-    location: "Chennai",
-    initials: "RT",
-    color: "bg-green-500",
-    text: "The mechanics are legit. Diagnosed a weird electrical issue on the spot that my regular shop missed. 10/10.",
-    dark: true
+    Icon: PiMapPin,
+    title: "Live tracking to your location",
+    desc: "Watch your mechanic move toward you in real time, with an ETA you can actually plan around.",
   },
   {
-    name: "Sudharshan",
-    location: "Pune",
-    initials: "SD",
-    color: "bg-red-500",
-    text: "I don't ride without this app anymore. It's like having a pit crew on speed dial. Prices are transparent too.",
-    dark: false
+    Icon: PiPhoneCall,
+    title: "Talk in the app",
+    desc: "Audio call and chat are built into every job, so you can explain the problem without sharing your number.",
   },
   {
-    name: "Jyothish",
-    location: "Kochi",
-    initials: "JY",
-    color: "bg-teal-500",
-    text: "Battery died before a big trip. Booked through MechZie and they swapped it out in my driveway within the hour.",
-    dark: true
-  }
+    Icon: PiCreditCard,
+    title: "Transparent digital payment",
+    desc: "Pay securely in the app with Razorpay. Itemized line items, no haggling on the roadside.",
+  },
+  {
+    Icon: PiLifebuoy,
+    title: "Booking for someone else",
+    desc: "Send help to a family member or friend and choose who the mechanic contacts — you or them.",
+  },
 ];
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-background overflow-hidden">
-      <div className="container mx-auto px-6 mb-16 text-center">
-        <h2 className="text-4xl font-bold tracking-tight mb-4">What Riders Are Saying</h2>
-        <p className="text-muted-foreground text-lg">Don't just take our word for it.</p>
-      </div>
+    <section id="testimonials" className="py-28 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
-      <div className="relative flex overflow-x-hidden group">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 30,
-          }}
-          className="flex whitespace-nowrap gap-6 px-3"
-        >
-          {/* Double the array for seamless infinite scroll */}
-          {[...reviews, ...reviews].map((review, i) => (
-            <div
-              key={i}
-              className={`flex-shrink-0 w-[350px] sm:w-[400px] p-8 rounded-3xl border whitespace-normal transition-shadow ${
-                review.dark
-                  ? "bg-[#121212] border-gray-800 text-white"
-                  : "bg-card border-border text-foreground"
-              }`}
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="mb-16 max-w-2xl">
+          <FadeSlideIn>
+            <span className="section-divider mb-5" />
+          </FadeSlideIn>
+          <FadeSlideIn delay={0.06}>
+            <h2
+              className="text-[clamp(2.6rem,6vw,4.2rem)] leading-none text-foreground mb-5"
+              style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.06em" }}
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-full ${review.color} flex items-center justify-center text-white font-bold text-lg shadow-sm`}>
-                    {review.initials}
+              Why Riders Trust MechZie
+            </h2>
+          </FadeSlideIn>
+          <FadeSlideIn delay={0.12}>
+            <p className="text-muted-foreground text-base leading-relaxed max-w-md">
+              Not promises — the actual mechanisms behind every rescue.
+            </p>
+          </FadeSlideIn>
+        </div>
+
+        {/* Cards */}
+        <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+          {pillars.map((pillar, i) => (
+            <motion.div key={i} variants={staggerItem}>
+              <TiltCard maxTilt={6}>
+                <SpotlightCard className="p-6 h-full group">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors duration-200">
+                    <pillar.Icon size={20} />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-base flex items-center gap-1">
-                      {review.name}
-                      <ShieldCheck className="w-4 h-4 text-primary" />
-                    </h4>
-                    <span className={`text-xs ${review.dark ? "text-gray-400" : "text-muted-foreground"}`}>
-                      {review.location}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex text-primary">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-              </div>
-              <p className={`text-sm leading-relaxed ${review.dark ? "text-gray-300" : "text-muted-foreground"}`}>
-                "{review.text}"
-              </p>
-            </div>
+                  <h3 className="font-semibold text-sm text-foreground mb-2 leading-snug tracking-wide">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{pillar.desc}</p>
+                </SpotlightCard>
+              </TiltCard>
+            </motion.div>
           ))}
-        </motion.div>
-        
-        {/* Gradients for smooth edge fading */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+        </StaggeredGrid>
       </div>
     </section>
   );

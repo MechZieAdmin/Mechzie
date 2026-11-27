@@ -1,141 +1,182 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { Smartphone, Download, CheckCircle2 } from "lucide-react";
+import {
+  PiDeviceMobile,
+  PiCheckCircle,
+  PiNavigationArrow,
+  PiChatCircle,
+} from "react-icons/pi";
+import { LINKS } from "@/lib/links";
+import { FadeSlideIn } from "@/components/ui/card-animations";
+
+function PhoneMockup() {
+  return (
+    <div className="relative mx-auto w-[240px] h-[480px]">
+      {/* Phone frame */}
+      <div className="absolute inset-0 bg-[hsl(220_16%_5%)] rounded-[32px] border border-[hsl(220_12%_22%)] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.7)]" />
+
+      {/* Notch */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-4 bg-[hsl(220_16%_3%)] rounded-full z-10" />
+
+      {/* Screen */}
+      <div className="absolute inset-2.5 rounded-[26px] bg-[hsl(220_16%_8%)] overflow-hidden flex flex-col">
+        {/* Status bar */}
+        <div className="flex items-center justify-between px-4 pt-5 pb-2">
+          <span className="text-[10px] text-muted-foreground font-medium">9:41</span>
+          <div className="flex gap-1">
+            <div className="w-4 h-2 rounded-sm bg-primary/40" />
+            <div className="w-1 h-2 rounded-sm bg-foreground/25" />
+          </div>
+        </div>
+
+        {/* Header */}
+        <div className="px-4 pb-3 border-b border-border">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[10px] text-muted-foreground">Job #MZ-2847</p>
+              <p className="text-sm font-semibold text-foreground">Mechanic En Route</p>
+            </div>
+            <span className="pill-tag text-[9px] px-2 py-1">
+              <span className="live-dot w-1.5 h-1.5 shrink-0" />
+              Live
+            </span>
+          </div>
+        </div>
+
+        {/* Map area */}
+        <div className="flex-1 relative bg-[hsl(220_16%_7%)] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 opacity-[0.05]"
+            style={{
+              backgroundImage: "radial-gradient(hsl(0 0% 60%) 1px, transparent 1px)",
+              backgroundSize: "16px 16px",
+            }}
+          />
+          <svg viewBox="0 0 120 140" className="w-full max-w-[160px] relative z-10">
+            <path d="M 20 120 Q 50 60 95 25" fill="none" stroke="hsl(220 12% 28%)" strokeWidth="3" strokeDasharray="5 4" strokeLinecap="round" />
+            <path d="M 20 120 Q 50 60 95 25" fill="none" stroke="hsl(26 88% 52%)" strokeWidth="3" strokeLinecap="round" strokeDasharray="60 80" />
+            <circle cx="20" cy="120" r="6" fill="hsl(26 88% 52%)" />
+            <circle cx="20" cy="120" r="11" fill="hsl(26 88% 52% / 0.2)" />
+            <circle cx="68" cy="68" r="5" fill="hsl(142 71% 45%)" />
+            <circle cx="68" cy="68" r="9" fill="hsl(142 71% 45% / 0.25)" />
+            <rect x="72" y="55" width="40" height="18" rx="4" fill="hsl(220 16% 13%)" stroke="hsl(220 12% 22%)" strokeWidth="0.75" />
+            <text x="92" y="67" textAnchor="middle" fill="hsl(0 0% 88%)" fontSize="8" fontWeight="600" fontFamily="Inter, sans-serif">12 min</text>
+          </svg>
+        </div>
+
+        {/* Bottom drawer */}
+        <div className="bg-[hsl(220_16%_9%)] border-t border-border p-4">
+          <div className="w-8 h-0.5 bg-border rounded-full mx-auto mb-4" />
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-9 h-9 rounded-full border border-primary/30 bg-card flex items-center justify-center text-xs font-bold text-primary shrink-0">
+              RK
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-foreground leading-snug">Ravi Kumar</p>
+              <p className="text-[10px] text-muted-foreground">Verified · Yamaha · ★ 4.9</p>
+            </div>
+            <div className="ml-auto flex gap-2">
+              <button className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center" aria-label="Track">
+                <PiNavigationArrow size={13} />
+              </button>
+              <button className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center" aria-label="Chat">
+                <PiChatCircle size={13} />
+              </button>
+            </div>
+          </div>
+
+          <a
+            href={LINKS.playStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-1.5 w-full py-2.5 bg-primary text-white rounded-md text-xs font-semibold"
+          >
+            <PiCheckCircle size={13} />
+            Track in App
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function AppPreview() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Normalize to -1 to 1 based on screen size
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      setMousePos({ x, y });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
-    <section id="app" className="py-32 bg-secondary overflow-hidden relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold tracking-tight mb-6"
-          >
-            See MechZie in Action
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-muted-foreground text-lg max-w-2xl mx-auto"
-          >
-            A seamlessly designed app experience to get you help instantly. No friction, just results.
-          </motion.p>
-        </div>
+    <section id="app" className="py-28 bg-[hsl(var(--secondary))] relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
-        <div className="relative flex justify-center items-center">
-          {/* Parallax glow */}
+      {/* Centered glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background: "radial-gradient(circle, hsl(26 88% 52% / 0.07) 0%, transparent 65%)",
+        }}
+      />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          {/* Phone mockup */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-primary rounded-full blur-[100px] opacity-20 pointer-events-none"
-            animate={{
-              x: `calc(-50% + ${mousePos.x * 30}px)`,
-              y: `calc(-50% + ${mousePos.y * 30}px)`
-            }}
-            transition={{ type: "spring", damping: 50, stiffness: 200 }}
-          />
-
-          {/* Phone Mockup Frame */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative z-10 w-[300px] h-[600px] bg-[#121212] rounded-[40px] p-3 border-4 border-gray-800 shadow-2xl overflow-hidden"
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex-1 flex justify-center"
           >
-            {/* Screen Content */}
-            <div className="absolute inset-3 bg-background rounded-[32px] overflow-hidden flex flex-col">
-              
-              {/* Map Background (Abstract Grid) */}
-              <div className="absolute inset-0 bg-[#F5F5F8] dark:bg-[#1A1A2E] z-0">
-                <div className="w-full h-full opacity-30" style={{ backgroundImage: 'radial-gradient(#E8751A 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-              </div>
-
-              {/* Status Header */}
-              <div className="bg-card/80 backdrop-blur-md p-4 relative z-10 rounded-b-3xl border-b border-border shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Mechanic En Route</h4>
-                    <p className="text-xs text-muted-foreground">Arriving in 12 mins</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Map Route SVG */}
-              <div className="flex-1 relative z-10 p-4 flex items-center justify-center">
-                <svg viewBox="0 0 100 100" className="w-48 h-48 drop-shadow-md">
-                  <path d="M20 80 Q 40 40 80 20" fill="none" stroke="currentColor" strokeOpacity="0.2" strokeWidth="4" strokeDasharray="4 4" />
-                  <path d="M20 80 Q 40 40 80 20" fill="none" stroke="#E8751A" strokeWidth="4" />
-                  <circle cx="20" cy="80" r="4" fill="#E8751A" />
-                  <circle cx="80" cy="20" r="4" fill="#1A1A2E" className="dark:fill-white" />
-                </svg>
-              </div>
-
-              {/* Bottom Drawer */}
-              <div className="bg-card p-5 rounded-t-3xl border-t border-border relative z-10 shadow-[0_-4px_24px_rgba(0,0,0,0.05)] dark:shadow-[0_-4px_24px_rgba(0,0,0,0.2)]">
-                <div className="w-12 h-1 bg-border rounded-full mx-auto mb-4" />
-                
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 border-2 border-primary relative overflow-hidden">
-                      <div className="absolute inset-0 bg-primary/20" />
-                      <span className="absolute inset-0 flex items-center justify-center font-bold text-xs">AY</span>
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-sm">Anusha Yadav</h5>
-                      <div className="flex text-xs text-yellow-500">
-                        ★★★★★
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-bold">
-                    YAMAHA R15
-                  </div>
-                </div>
-
-                <button className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-sm hover:bg-primary/90 transition-colors shadow-md">
-                  Call Mechanic
-                </button>
-              </div>
-
+            <div className="float">
+              <PhoneMockup />
             </div>
           </motion.div>
-        </div>
 
-        <div className="mt-16 flex flex-col sm:flex-row justify-center items-center gap-4 relative z-10">
-          <button className="flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-xl hover:bg-foreground/90 transition-transform hover:-translate-y-1">
-            <Smartphone className="w-6 h-6" />
-            <div className="text-left">
-              <div className="text-[10px] uppercase tracking-wider">Download on the</div>
-              <div className="font-bold text-sm leading-tight">App Store</div>
-            </div>
-          </button>
-          <button className="flex items-center gap-3 bg-foreground text-background px-6 py-3 rounded-xl hover:bg-foreground/90 transition-transform hover:-translate-y-1">
-            <Download className="w-6 h-6" />
-            <div className="text-left">
-              <div className="text-[10px] uppercase tracking-wider">Get it on</div>
-              <div className="font-bold text-sm leading-tight">Google Play</div>
-            </div>
-          </button>
+          {/* Copy */}
+          <div className="flex-1">
+            <FadeSlideIn>
+              <span className="section-divider mb-5" />
+            </FadeSlideIn>
+            <FadeSlideIn delay={0.06}>
+              <h2
+                className="text-[clamp(2.6rem,6vw,4.2rem)] leading-none text-foreground mb-5"
+                style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.06em" }}
+              >
+                The Rescue, Live in Your Hand
+              </h2>
+            </FadeSlideIn>
+            <FadeSlideIn delay={0.12}>
+              <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-md">
+                Watch your mechanic approach in real time. Talk to them the moment
+                they accept — audio call and chat built in, no number sharing.
+                Pay in-app when the job is done.
+              </p>
+            </FadeSlideIn>
+
+            <FadeSlideIn delay={0.17}>
+              <div className="space-y-3 mb-10">
+                {[
+                  "Live mechanic tracking with ETA",
+                  "In-app audio call and chat",
+                  "Razorpay payment — itemized bill",
+                  "Two-sided ratings after every job",
+                ].map((feat) => (
+                  <div key={feat} className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <PiCheckCircle size={16} className="text-primary shrink-0" />
+                    {feat}
+                  </div>
+                ))}
+              </div>
+            </FadeSlideIn>
+
+            <FadeSlideIn delay={0.22}>
+              <a
+                href={LINKS.playStore}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary inline-flex gap-2.5 px-7 py-3.5 text-base"
+              >
+                <PiDeviceMobile size={18} />
+                Download on Google Play
+              </a>
+            </FadeSlideIn>
+          </div>
         </div>
       </div>
     </section>
