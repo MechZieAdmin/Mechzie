@@ -2,21 +2,21 @@
  * Canonical outbound/anchor links for the MechZie landing page.
  * Single source of truth — every CTA imports from here.
  *
- * NOTE: `playStore` is the intended destination for all "get the app" CTAs.
- * Confirm the real Play Store listing URL with the team and update it here
- * once; every CTA will follow.
+ * `playStore` is the destination for all "get the app" CTAs — update it here
+ * once and every CTA will follow.
  */
 export const LINKS = {
-  /** Google Play listing for the MechZie Android app. TODO: confirm final URL. */
-  playStore: "https://play.google.com/store/apps/details?id=in.mechzie.app",
+  /** Google Play listing for the MechZie customer Android app. */
+  playStore: "https://play.google.com/store/apps/details?id=in.mechzie.customer",
+  /** Google Play listing for the MechZie Pro mechanic Android app. */
+  mechanicPlayStore: "https://play.google.com/store/apps/details?id=in.mechzie.mechanic",
   /** In-page anchors (must match section ids on the landing page). */
   anchors: {
     services: "#services",
     howItWorks: "#how-it-works",
     whyUs: "#why-us",
     app: "#app",
-    sos: "#advanced-sos",
-    testimonials: "#testimonials",
+    partner: "#partner",
   },
   /** wouter routes (already registered in App.tsx). */
   routes: {

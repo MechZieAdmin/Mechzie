@@ -1,102 +1,113 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, UserCheck, ThumbsUp } from "lucide-react";
+import { PiMapPin, PiUserCheck, PiThumbsUp } from "react-icons/pi";
+import { FadeSlideIn } from "@/components/ui/card-animations";
 
 const steps = [
   {
-    num: "01",
-    icon: <MapPin className="w-6 h-6" />,
-    title: "Request Help",
-    desc: "Share your location and bike issue in the app. Takes less than 60 seconds."
+    Icon: PiMapPin,
+    title: "Share Your Location",
+    desc: "Open the app, describe the issue, and drop your pin. The request goes out in under 60 seconds.",
+    detail: "Works anywhere in India · No address memorization needed",
   },
   {
-    num: "02",
-    icon: <UserCheck className="w-6 h-6" />,
-    title: "Mechanic Arrives",
-    desc: "A verified mechanic accepts your request and arrives within 15-30 minutes."
+    Icon: PiUserCheck,
+    title: "Mechanic Dispatched",
+    desc: "Nearby verified mechanics receive your request simultaneously. The first to accept is assigned — atomic dispatch, no delays.",
+    detail: "Document-verified · Live ETA the moment they accept",
   },
   {
-    num: "03",
-    icon: <ThumbsUp className="w-6 h-6" />,
-    title: "Ride Again",
-    desc: "Your bike gets fixed on the spot. Pay seamlessly and get back on the road."
-  }
+    Icon: PiThumbsUp,
+    title: "Fixed. Paid. Back on Road.",
+    desc: "Your mechanic fixes it on the spot. Pay with Razorpay in the app — itemized, no roadside haggling.",
+    detail: "Razorpay · UPI · In-app call and chat throughout",
+  },
 ];
 
 export function HowItWorks() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end center"]
+    offset: ["start 80%", "end 50%"],
   });
-
-  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="how-it-works" className="dark py-32 bg-background text-foreground relative">
+    <section id="how-it-works" className="py-28 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
       <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold tracking-tight mb-4"
-          >
-            How MechZie Works
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-400 text-lg max-w-2xl mx-auto"
-          >
-            Three simple steps between a breakdown and getting back on the road.
-          </motion.p>
+        {/* Header */}
+        <div className="mb-20 max-w-2xl">
+          <FadeSlideIn>
+            <span className="section-divider mb-5" />
+          </FadeSlideIn>
+          <FadeSlideIn delay={0.06}>
+            <h2
+              className="text-[clamp(2.6rem,6vw,4.2rem)] leading-none text-foreground mb-5"
+              style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.06em" }}
+            >
+              Three Steps to Fixed
+            </h2>
+          </FadeSlideIn>
+          <FadeSlideIn delay={0.12}>
+            <p className="text-muted-foreground text-base leading-relaxed max-w-md">
+              From stranded to back-on-road — the complete sequence inside the app.
+            </p>
+          </FadeSlideIn>
         </div>
 
-        <div ref={containerRef} className="relative max-w-5xl mx-auto">
-          {/* Desktop horizontal line */}
-          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-1 bg-white/10 rounded-full overflow-hidden">
-            <motion.div className="h-full bg-primary origin-left" style={{ width: lineWidth }} />
+        {/* Steps */}
+        <div ref={containerRef} className="relative max-w-3xl">
+          {/* Animated vertical progress line (desktop) */}
+          <div className="hidden md:block absolute left-7 top-10 bottom-10 w-px bg-border overflow-hidden">
+            <motion.div
+              className="w-full origin-top bg-primary"
+              style={{ scaleY: lineScale, height: "100%" }}
+            />
           </div>
 
-          {/* Mobile vertical line */}
-          <div className="md:hidden absolute top-0 bottom-0 left-[31px] w-1 bg-white/10 rounded-full overflow-hidden">
-            <motion.div className="w-full bg-primary origin-top" style={{ height: lineHeight }} />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 relative">
+          <div className="space-y-16 md:space-y-20">
             {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: index * 0.2 }}
-                className="relative flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-8 z-10"
-              >
-                <div className="relative shrink-0">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", delay: index * 0.2 + 0.2 }}
-                    className="w-16 h-16 rounded-full bg-card border-2 border-primary flex items-center justify-center text-primary shadow-[0_0_20px_rgba(232,117,26,0.3)] z-10 relative"
-                  >
-                    {step.icon}
-                  </motion.div>
+              <FadeSlideIn key={index} delay={index * 0.1} direction="left">
+                <div className="flex gap-8 md:gap-12 items-start">
+                  {/* Node */}
+                  <div className="flex flex-col items-center shrink-0">
+                    <motion.div
+                      initial={{ scale: 0.4, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 16,
+                        delay: index * 0.12,
+                      }}
+                      whileHover={{ scale: 1.08 }}
+                      className="w-14 h-14 rounded-full border-2 border-primary bg-card flex items-center justify-center text-primary shadow-[0_0_20px_hsl(26_88%_52%/0.2)] relative z-10 cursor-default"
+                    >
+                      <step.Icon size={20} />
+                    </motion.div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="pb-2">
+                    <p className="text-xs font-bold text-primary uppercase tracking-[0.14em] mb-2">
+                      Step {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3
+                      className="text-[1.7rem] leading-tight text-foreground mb-3"
+                      style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.06em" }}
+                    >
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-3 max-w-lg">
+                      {step.desc}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{step.detail}</p>
+                  </div>
                 </div>
-                
-                <div className="md:text-center pt-2 md:pt-0">
-                  <div className="text-primary font-mono text-sm font-bold mb-2">STEP {step.num}</div>
-                  <h3 className="text-xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-                    {step.desc}
-                  </p>
-                </div>
-              </motion.div>
+              </FadeSlideIn>
             ))}
           </div>
         </div>

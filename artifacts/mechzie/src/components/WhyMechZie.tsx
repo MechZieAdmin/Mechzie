@@ -1,59 +1,101 @@
+import {
+  PiShieldCheck,
+  PiNavigationArrow,
+  PiPhoneCall,
+  PiLifebuoy,
+} from "react-icons/pi";
+import { SpotlightCard, TiltCard, FadeSlideIn, StaggeredGrid, staggerItem } from "@/components/ui/card-animations";
 import { motion } from "framer-motion";
-import { ShieldCheck, Navigation, PhoneCall, LifeBuoy } from "lucide-react";
 
-// Trust signals grounded in the real MechZie API (see .impeccable/sources/openapi.yaml) —
-// no fabricated numbers. Every claim maps to a shipped capability.
 const pillars = [
   {
-    icon: <ShieldCheck className="w-6 h-6 text-white" />,
+    Icon: PiShieldCheck,
     title: "Verified Mechanics",
-    desc: "Every mechanic is document-verified by our team before they can go online.",
+    desc: "Every mechanic's documents are reviewed by our team before they can go online and take a single job.",
+    emphasis: "Admin review before first job",
   },
   {
-    icon: <Navigation className="w-6 h-6 text-white" />,
+    Icon: PiNavigationArrow,
     title: "Live Tracking",
-    desc: "Watch your mechanic's approach in real time, from accept to arrival.",
+    desc: "Watch your mechanic move toward you in real time, from accept to arrival. ETA from the moment they're assigned.",
+    emphasis: "Real-time location · polling fallback",
   },
   {
-    icon: <PhoneCall className="w-6 h-6 text-white" />,
+    Icon: PiPhoneCall,
     title: "In-App Call & Chat",
-    desc: "Talk to your mechanic the moment they accept — no number sharing needed.",
+    desc: "Audio call and chat are built into every job — talk to your mechanic without sharing your number.",
+    emphasis: "No number exchange required",
   },
   {
-    icon: <LifeBuoy className="w-6 h-6 text-white" />,
-    title: "Help in Minutes",
-    desc: "Your job is offered to nearby verified mechanics and the first to accept is dispatched.",
+    Icon: PiLifebuoy,
+    title: "Book for Someone Else",
+    desc: "Send help to a family member — choose whether the mechanic contacts you or them directly.",
+    emphasis: "Beneficiary + contact preference",
   },
 ];
 
 export function WhyMechZie() {
   return (
-    <section id="why-us" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold tracking-tight mb-4">Why MechZie</h2>
-          <p className="text-muted-foreground text-lg">
-            A dispatched, tracked, paid-in-app rescue — not a directory of phone numbers.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pillars.map((pillar, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="flex flex-col items-center text-center group"
+    <section id="why-us" className="py-28 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
+      {/* Large watermark */}
+      <div
+        className="absolute top-1/2 -translate-y-1/2 left-0 right-0 text-center pointer-events-none select-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <span
+          className="text-[clamp(5rem,16vw,12rem)] leading-none font-black text-foreground/[0.06] whitespace-nowrap"
+          style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.08em" }}
+        >
+          MECHZIE
+        </span>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div className="mb-16 max-w-2xl">
+          <FadeSlideIn>
+            <span className="section-divider mb-5" />
+          </FadeSlideIn>
+          <FadeSlideIn delay={0.06}>
+            <h2
+              className="text-[clamp(2.6rem,6vw,4.2rem)] leading-none text-foreground mb-5"
+              style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.06em" }}
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-orange-400 flex items-center justify-center mb-6 shadow-lg transform transition-transform group-hover:scale-110">
-                {pillar.icon}
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{pillar.title}</h3>
-              <p className="text-muted-foreground text-sm">{pillar.desc}</p>
+              Not a Directory. A Dispatch.
+            </h2>
+          </FadeSlideIn>
+          <FadeSlideIn delay={0.12}>
+            <p className="text-muted-foreground text-base leading-relaxed max-w-md">
+              Every capability below is live in the app — not a promise, a mechanism.
+            </p>
+          </FadeSlideIn>
+        </div>
+
+        {/* Pillars */}
+        <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl">
+          {pillars.map((pillar, i) => (
+            <motion.div key={i} variants={staggerItem}>
+              <TiltCard maxTilt={5}>
+                <SpotlightCard className="p-7 h-full group">
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-200">
+                      <pillar.Icon size={22} />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-2">{pillar.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                        {pillar.desc}
+                      </p>
+                      <p className="text-xs font-semibold text-primary/80">{pillar.emphasis}</p>
+                    </div>
+                  </div>
+                </SpotlightCard>
+              </TiltCard>
             </motion.div>
           ))}
-        </div>
+        </StaggeredGrid>
       </div>
     </section>
   );

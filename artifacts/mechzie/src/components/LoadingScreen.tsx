@@ -18,6 +18,11 @@ export function LoadingScreen() {
   });
   const [fading, setFading] = useState(false);
 
+  function dismiss() {
+    setFading(true);
+    setTimeout(() => setVisible(false), 400);
+  }
+
   useEffect(() => {
     if (!visible) return;
 
@@ -27,8 +32,9 @@ export function LoadingScreen() {
       /* non-fatal */
     }
 
-    const fadeTimer = setTimeout(() => setFading(true), 1400);
-    const hideTimer = setTimeout(() => setVisible(false), 1800);
+    // Max display time: 1.2 s (down from 1.8 s) — emergency users can't wait
+    const fadeTimer = setTimeout(() => setFading(true), 900);
+    const hideTimer = setTimeout(() => setVisible(false), 1300);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
@@ -39,10 +45,13 @@ export function LoadingScreen() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
+      role="presentation"
+      aria-hidden="true"
+      onClick={dismiss}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background cursor-pointer select-none"
       style={{
         opacity: fading ? 0 : 1,
-        transition: "opacity 0.6s ease-in-out",
+        transition: "opacity 0.4s ease-in-out",
         pointerEvents: fading ? "none" : "all",
       }}
     >
@@ -59,7 +68,8 @@ export function LoadingScreen() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-4xl font-bold tracking-tight text-foreground"
+          className="text-5xl font-bold tracking-wide text-foreground"
+          style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.04em" }}
         >
           Mech<span className="text-primary">Zie</span>
         </motion.div>

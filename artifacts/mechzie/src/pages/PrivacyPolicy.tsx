@@ -138,7 +138,11 @@ export default function PrivacyPolicy() {
               </div>
               <div>
                 <span className="block font-medium text-foreground mb-1">Office Address:</span>
-                123-dwaraka nagar, Visakhapatnam, Andhra Pradesh - 530001
+                VARNA INFOTECH PVT LTD
+                <br />
+                5th Floor, VMRDA THE DECK
+                <br />
+                SIRIPURAM, VISAKHAPATNAM
               </div>
             </div>
           </div>

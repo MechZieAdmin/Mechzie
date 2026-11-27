@@ -1,100 +1,110 @@
-import { motion, Variants } from "framer-motion";
-import { AlertCircle, Disc, Truck, Activity, Battery, Droplet } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  PiWarningCircle,
+  PiTire,
+  PiTruck,
+  PiEngine,
+  PiBatteryChargingVertical,
+  PiDropHalf,
+} from "react-icons/pi";
+import { SpotlightCard, TiltCard, StaggeredGrid, staggerItem } from "@/components/ui/card-animations";
 
 const services = [
   {
-    icon: <AlertCircle className="w-8 h-8" />,
+    Icon: PiWarningCircle,
     title: "Emergency Repair",
-    description: "Rapid response for unexpected breakdowns on the road."
+    description: "Rapid response for unexpected breakdowns on the road.",
   },
   {
-    icon: <Disc className="w-8 h-8" />,
-    title: "Flat Tire Support",
-    description: "Quick puncture fixes and tube replacements at your location."
+    Icon: PiTire,
+    title: "Flat Tyre Support",
+    description: "Quick puncture fixes and tube replacements at your location.",
   },
   {
-    icon: <Truck className="w-8 h-8" />,
+    Icon: PiTruck,
     title: "Doorstep Service",
-    description: "Routine maintenance and servicing right in your driveway."
+    description: "Routine maintenance and servicing right in your driveway.",
   },
   {
-    icon: <Activity className="w-8 h-8" />,
+    Icon: PiEngine,
     title: "Engine Diagnostics",
-    description: "Advanced scanning to identify and fix engine issues."
+    description: "Advanced scanning to identify and fix engine issues.",
   },
   {
-    icon: <Battery className="w-8 h-8" />,
+    Icon: PiBatteryChargingVertical,
     title: "Battery Support",
-    description: "Jump starts and battery replacements to get you moving."
+    description: "Jump starts and battery replacements to get you moving.",
   },
   {
-    icon: <Droplet className="w-8 h-8" />,
+    Icon: PiDropHalf,
     title: "Fuel Assistance",
-    description: "Emergency fuel delivery when you run dry unexpectedly."
-  }
+    description: "Emergency fuel delivery when you run dry unexpectedly.",
+  },
 ];
 
 export function Services() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } }
-  };
-
   return (
-    <section id="services" className="py-24 bg-background relative z-10">
+    <section id="services" className="py-28 bg-background relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
       <div className="container mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+        {/* Header */}
+        <div className="mb-16 max-w-2xl">
+          <motion.span
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold tracking-tight mb-4"
+            className="section-divider mb-5"
+          />
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+            className="text-[clamp(2.6rem,6vw,4.2rem)] leading-none text-foreground mb-5"
+            style={{ fontFamily: "var(--app-font-display)", letterSpacing: "0.06em" }}
           >
-            Comprehensive Support
+            What We Fix
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground text-lg"
+            className="text-muted-foreground text-base max-w-lg leading-relaxed"
           >
-            From minor fixes to major emergencies, our verified mechanics handle everything your bike needs.
+            From minor fixes to major emergencies — a verified mechanic handles
+            everything your bike needs, dispatched to your location.
           </motion.p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        {/* Grid with spotlight cards + tilt */}
+        <StaggeredGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-[0_8px_30px_rgb(232,117,26,0.12)] group"
-            >
-              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-card-foreground">{service.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
+            <motion.div key={index} variants={staggerItem}>
+              <TiltCard maxTilt={6}>
+                <SpotlightCard className="p-7 h-full group">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-colors duration-200 group-hover:bg-primary"
+                    style={{ background: "hsl(26 88% 52% / 0.12)" }}
+                  >
+                    <service.Icon
+                      size={22}
+                      className="transition-colors duration-200 group-hover:text-white"
+                      style={{ color: "hsl(26 88% 52%)" }}
+                    />
+                  </div>
+                  <h3 className="text-sm font-semibold text-foreground mb-2 leading-snug tracking-wide">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
+                </SpotlightCard>
+              </TiltCard>
             </motion.div>
           ))}
-        </motion.div>
+        </StaggeredGrid>
       </div>
     </section>
   );
